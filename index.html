@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sheraz Saudagar | IT & Cybersecurity</title>
+    <meta name="description" content="Portfolio of Sheraz Saudagar, IT and Cybersecurity student at Kennesaw State University.">
+
+    <!-- Fonts: Inter for UI, JetBrains Mono for technical accents -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Academicons for Google Scholar Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            base: '#0B1120',
+                            surface: '#111827',
+                            border: '#1F2937',
+                            accent: '#06b6d4',
+                            glow: 'rgba(6, 182, 212, 0.5)'
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for specific technical aesthetics -->
+    <style>
+        :root {
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+        }
+        body {
+            background-color: #0B1120;
+            color: #e5e7eb;
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(6, 182, 212, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.05), transparent 25%);
+        }
+
+        .glass-nav {
+            background: rgba(11, 17, 32, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: env(safe-area-inset-top, 0px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        ::selection {
+            background: rgba(6, 182, 212, 0.3);
+            color: #fff;
+        }
+
+        @keyframes scanSweep {
+            0% { transform: translateY(-120%); }
+            100% { transform: translateY(220%); }
+        }
+        .scan-line {
+            animation: scanSweep 3.2s ease-in-out infinite;
+        }
+        @keyframes ringPulse {
+            0%, 100% { opacity: 0.25; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.04); }
+        }
+        .ring-pulse {
+            animation: ringPulse 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-cyber-accent selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-mono text-xl font-bold tracking-tighter text-white group">
+                        <span class="text-cyber-accent">&lt;</span>Sheraz<span class="text-cyber-accent">/&gt;</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 lg:space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-cyber-accent transition-colors text-sm font-medium">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-cyber-accent transition-colors text-sm font-medium">Skills</a>
+                    <a href="#experience" class="text-gray-300 hover:text-cyber-accent transition-colors text-sm font-medium">Experience</a>
+                    <a href="#leadership" class="text-gray-300 hover:text-cyber-accent transition-colors text-sm font-medium">Leadership</a>
+                    <a href="#projects" class="text-gray-300 hover:text-cyber-accent transition-colors text-sm font-medium">Projects</a>
+                    <a href="#hobbies" class="text-gray-300 hover:text-cyber-accent transition-colors text-sm font-medium">Labs &amp; Hobbies</a>
+                </div>
+
+                <div class="hidden md:flex">
+                    <a href="#contact" class="px-4 py-2 border border-cyber-accent text-cyber-accent rounded hover:bg-cyber-accent hover:text-cyber-base transition-all duration-300 text-sm font-medium font-mono">
+                        Connect
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cyber-surface border-b border-cyber-border absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyber-accent hover:bg-cyber-border rounded-md">About</a>
+                <a href="#skills" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyber-accent hover:bg-cyber-border rounded-md">Skills</a>
+                <a href="#experience" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyber-accent hover:bg-cyber-border rounded-md">Experience</a>
+                <a href="#leadership" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyber-accent hover:bg-cyber-border rounded-md">Leadership</a>
+                <a href="#projects" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyber-accent hover:bg-cyber-border rounded-md">Projects</a>
+                <a href="#hobbies" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyber-accent hover:bg-cyber-border rounded-md">Labs &amp; Hobbies</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-grid z-0"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-3/5 space-y-6">
+                <p class="text-cyber-accent font-mono text-sm md:text-base animate-fade-in-up" style="animation-delay: 0.1s;">
+                    $ sudo whoami
+                </p>
+                <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight animate-fade-in-up" style="animation-delay: 0.2s;">
+                    Sheraz Saudagar.
+                </h1>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-400 animate-fade-in-up" style="animation-delay: 0.3s;">
+                    Securing the future of IT.
+                </h2>
+                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 animate-fade-in-up leading-relaxed" style="animation-delay: 0.4s;">
+                    Information Technology &amp; Cybersecurity Honors student at Kennesaw State University.
+                    Specializing in infrastructure defense, network traffic analysis, IT support leadership, and intelligent robotic systems.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start animate-fade-in-up" style="animation-delay: 0.5s;">
+                    <a href="https://scholar.google.com/citations?user=AepThOgAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-cyber-accent text-cyber-base font-medium rounded hover:bg-cyan-300 transition-colors shadow-[0_0_15px_rgba(6,182,212,0.4)] flex items-center justify-center gap-2">
+                        <i class="ai ai-google-scholar"></i> Google Scholar
+                    </a>
+                    <a href="https://www.linkedin.com/in/sheraz-saudagar-308a7338b" target="_blank" rel="noopener noreferrer" class="px-8 py-3 border border-gray-600 text-gray-300 font-medium rounded hover:border-blue-400 hover:text-white transition-colors flex items-center justify-center gap-2">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full md:w-2/5 flex justify-center animate-fade-in-up" style="animation-delay: 0.6s;">
+                <div class="relative w-72 h-72 md:w-96 md:h-96 flex items-center justify-center">
+                    <div class="absolute inset-0 border-2 border-cyber-accent rounded-full animate-[spin_12s_linear_infinite] opacity-40 border-dashed"></div>
+                    <div class="absolute inset-6 border border-blue-500 rounded-full animate-[spin_16s_linear_infinite_reverse] opacity-40"></div>
+                    <div class="absolute inset-12 rounded-full ring-pulse bg-cyber-accent/10 blur-2xl"></div>
+
+                    <div class="relative w-48 h-48 md:w-64 md:h-64 overflow-hidden drop-shadow-[0_0_25px_rgba(6,182,212,0.35)]"
+                         style="clip-path: polygon(50% 0%, 100% 18%, 100% 58%, 50% 100%, 0% 58%, 0% 18%);">
+                        <svg viewBox="0 0 200 200" class="w-full h-full block" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#111827"/>
+                                    <stop offset="100%" stop-color="#0B1120"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="200" height="200" fill="url(#shieldGrad)"/>
+                            <g stroke="#06b6d4" stroke-width="1.2" opacity="0.5" fill="none">
+                                <path d="M15 45 H70 V72 H140 V35 H190"/>
+                                <path d="M15 155 H55 V128 H105 V150 H190"/>
+                                <path d="M100 5 V55"/>
+                                <path d="M100 145 V195"/>
+                                <path d="M45 15 V45"/>
+                                <path d="M155 15 V45"/>
+                                <path d="M45 185 V155"/>
+                                <path d="M155 185 V155"/>
+                            </g>
+                            <g fill="#06b6d4">
+                                <circle cx="70" cy="45" r="3"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle>
+                                <circle cx="140" cy="72" r="3"><animate attributeName="opacity" values="1;0.3;1" dur="2.6s" repeatCount="indefinite"/></circle>
+                                <circle cx="55" cy="128" r="3"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite"/></circle>
+                                <circle cx="105" cy="150" r="3"><animate attributeName="opacity" values="1;0.4;1" dur="2.3s" repeatCount="indefinite"/></circle>
+                                <circle cx="45" cy="45" r="2.5"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.1s" repeatCount="indefinite"/></circle>
+                                <circle cx="155" cy="45" r="2.5"><animate attributeName="opacity" values="1;0.4;1" dur="1.9s" repeatCount="indefinite"/></circle>
+                            </g>
+                            <g transform="translate(100,102)">
+                                <rect x="-24" y="-6" width="48" height="36" rx="5" fill="#0B1120" stroke="#06b6d4" stroke-width="3"/>
+                                <path d="M -15 -6 V -20 A 15 15 0 0 1 15 -20 V -6" fill="none" stroke="#06b6d4" stroke-width="3"/>
+                                <circle cx="0" cy="10" r="4.5" fill="#06b6d4"/>
+                                <rect x="-1.5" y="10" width="3" height="9" fill="#06b6d4"/>
+                            </g>
+                        </svg>
+                        <div class="absolute left-0 right-0 h-10 bg-gradient-to-b from-transparent via-cyber-accent/60 to-transparent scan-line pointer-events-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-cyber-base relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2 space-y-6">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">About Me</h2>
+                        <div class="h-px bg-cyber-border flex-grow"></div>
+                    </div>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Hello! My name is Sheraz Saudagar and I enjoy building, analyzing, and securing digital infrastructure. My technical journey at Kennesaw State University began with learning hands on networking and systems, troubleshooting, evolving into more advanced cybersecurity labs and multidisciplinary robotics research.
+                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        I am currently pursuing a <span class="text-cyber-accent">Bachelor of Science in Information Technology</span> with a concentration in <span class="text-cyber-accent">Cybersecurity</span> at Kennesaw State University as an Honors College student (3.8 GPA), graduation is excepted in May 2027.
+                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Throughout my core KSU coursework—including <span class="text-white font-medium">IT 4323 (Data Communications &amp; Networking)</span>, <span class="text-white font-medium">IT 4883 (Infrastructure Defense)</span>, and <span class="text-white font-medium">IT 4843 (Ethical Hacking for Effective Defense)</span>—I have built a strong foundation in packet analysis with Wireshark, network mapping with Nmap, and enterprise system hardening.
+                    </p>
+                </div>
+
+                <div class="w-full md:w-1/2 relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-cyber-accent to-blue-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative bg-cyber-surface ring-1 ring-white/10 rounded-xl p-8 h-full flex flex-col justify-center">
+                        <div class="font-mono text-sm text-cyber-accent mb-4">// Quick_Stats.json</div>
+                        <ul class="space-y-4 font-mono text-gray-300 text-sm md:text-base">
+                            <li class="flex items-start">
+                                <span class="text-green-400 mr-2">➜</span>
+                                <div><span class="text-white">University:</span> Kennesaw State University</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-400 mr-2">➜</span>
+                                <div><span class="text-white">Degree:</span> BS Information Technology (Cybersecurity)</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-400 mr-2">➜</span>
+                                <div><span class="text-white">Honors &amp; GPA:</span> Honors College Student | 3.8 GPA</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-400 mr-2">➜</span>
+                                <div><span class="text-white">Key Courses:</span> IT 4323, IT 4883, IT 4843</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-400 mr-2">➜</span>
+                                <div><span class="text-white">Leadership:</span> Honors College Leadership Council (HALC)</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-400 mr-2">➜</span>
+                                <div><span class="text-white">Graduation:</span> May 2027</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 bg-cyber-surface/50 border-y border-cyber-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <div class="flex items-center gap-4 mb-12">
+                    <div class="h-px bg-cyber-border flex-grow hidden md:block"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white text-center md:text-left">Technical Arsenal</h2>
+                    <div class="h-px bg-cyber-border flex-grow"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Networking & Cybersecurity -->
+                    <div class="bg-cyber-base border border-cyber-border rounded-xl p-6 hover:border-cyber-accent transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-shield-halved text-cyber-accent text-xl"></i>
+                            <h3 class="font-mono text-white text-sm font-bold">Cybersecurity &amp; Net</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Wireshark</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Nmap</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Infrastructure Defense</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Packet Analysis</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Linux / Windows / macOS</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Wireless Config</span>
+                        </div>
+                    </div>
+
+                    <!-- Programming & AI -->
+                    <div class="bg-cyber-base border border-cyber-border rounded-xl p-6 hover:border-cyber-accent transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-code text-cyber-accent text-xl"></i>
+                            <h3 class="font-mono text-white text-sm font-bold">Programming &amp; AI</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Python</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Java</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">C++</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">PyTorch</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Computer Vision (YOLO)</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Deep Learning</span>
+                        </div>
+                    </div>
+
+                    <!-- Hardware & Embedded -->
+                    <div class="bg-cyber-base border border-cyber-border rounded-xl p-6 hover:border-cyber-accent transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-microchip text-cyber-accent text-xl"></i>
+                            <h3 class="font-mono text-white text-sm font-bold">Embedded &amp; Robotics</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Raspberry Pi</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">ESP32</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">ROS 2</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">IoT Sensors</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">3D Printing &amp; Onshape</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">MATLAB</span>
+                        </div>
+                    </div>
+
+                    <!-- IT Support & Operations -->
+                    <div class="bg-cyber-base border border-cyber-border rounded-xl p-6 hover:border-cyber-accent transition-colors">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-headset text-cyber-accent text-xl"></i>
+                            <h3 class="font-mono text-white text-sm font-bold">IT Support &amp; Admin</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">ServiceNow</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Incident Management</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Account &amp; Access Admin</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">Hardware Diagnostics</span>
+                            <span class="px-3 py-1 bg-cyber-surface border border-cyber-border rounded-full text-xs text-gray-300">AV &amp; Printer Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24 bg-cyber-base relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <div class="flex items-center gap-4 mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Experience</h2>
+                    <div class="h-px bg-cyber-border flex-grow"></div>
+                </div>
+
+                <div class="relative border-l-2 border-cyber-border ml-3 md:ml-6 space-y-12">
+                    <!-- IT Support Specialist Team Lead -->
+                    <div class="relative pl-8 md:pl-12 reveal">
+                        <div class="absolute w-6 h-6 bg-cyber-base border-4 border-cyber-accent rounded-full -left-[13px] top-1"></div>
+                        <div class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">IT Support Specialist Team Lead</h3>
+                            <span class="font-mono text-sm text-cyber-accent mt-1 md:mt-0">06/2026 - Present</span>
+                        </div>
+                        <h4 class="text-lg text-gray-400 mb-4 font-medium">Kennesaw State University &middot; Marietta, GA</h4>
+                        <ul class="list-none space-y-2 text-gray-400 text-sm md:text-base">
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-cyber-accent mt-1 mr-2"></i>
+                                <span>Provide first-level technical support to students, faculty, and staff by diagnosing hardware, software, account-access, and network-connectivity issues.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-cyber-accent mt-1 mr-2"></i>
+                                <span>Assist with password resets, account management, software installation, device configuration, and wireless troubleshooting.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-cyber-accent mt-1 mr-2"></i>
+                                <span>Use ServiceNow to document, prioritize, track, and resolve incidents while maintaining accurate support records.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-cyber-accent mt-1 mr-2"></i>
+                                <span>Escalate complex technical problems to appropriate IT teams and collaborate with staff to support effective service delivery.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-cyber-accent mt-1 mr-2"></i>
+                                <span>Follow university security and privacy procedures when handling accounts, confidential information, and institutional systems.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-cyber-accent mt-1 mr-2"></i>
+                                <span>Support audiovisual equipment checkout, returns, and related user requests.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Undergraduate Research Assistant -->
+                    <div class="relative pl-8 md:pl-12 reveal">
+                        <div class="absolute w-6 h-6 bg-cyber-base border-4 border-gray-500 rounded-full -left-[13px] top-1"></div>
+                        <div class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Undergraduate Research Assistant</h3>
+                            <span class="font-mono text-sm text-gray-400 mt-1 md:mt-0">08/2024 - Present</span>
+                        </div>
+                        <h4 class="text-lg text-gray-400 mb-4 font-medium">Kennesaw State University &middot; Marietta, GA</h4>
+                        <ul class="list-none space-y-2 text-gray-400 text-sm md:text-base">
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-gray-400 mt-1 mr-2"></i>
+                                <span>Contribute to precision agriculture and robotics research integrating YOLO-based computer vision, ROS 2 frameworks, and force-controlled robotic gripping mechanisms.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-gray-400 mt-1 mr-2"></i>
+                                <span>Develop and test embedded IoT systems using ESP32 microcontrollers, Raspberry Pi wireless CSI sensing, and UAV-deployable 3D-printed hardware.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-caret-right text-gray-400 mt-1 mr-2"></i>
+                                <span>Co-authored multiple peer-reviewed conference and journal publications across IEEE HONET, IEEE EECR, ICOMMS, and the Journal of Robotics and Control.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership" class="py-24 bg-cyber-surface/50 border-t border-cyber-border">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <div class="flex items-center gap-4 mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Leadership &amp; Honors</h2>
+                    <div class="h-px bg-cyber-border flex-grow"></div>
+                </div>
+
+                <div class="bg-cyber-base border border-cyber-border rounded-xl p-8 relative overflow-hidden hover:border-cyber-accent transition-all duration-300">
+                    <div class="absolute -right-8 -bottom-8 text-cyber-accent/5 text-9xl pointer-events-none">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-3">
+                        <h3 class="text-2xl font-bold text-white">Honors College Leadership Council (HALC)</h3>
+                        <span class="font-mono text-sm text-cyber-accent mt-1 md:mt-0">03/2026 - Present</span>
+                    </div>
+                    <h4 class="text-lg text-gray-400 mb-6 font-medium">Kennesaw State University Honors College &middot; Student Member</h4>
+                    <ul class="list-none space-y-3 text-gray-300 text-base">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-cyber-accent mt-1 mr-3"></i>
+                            <span>Collaborate with Honors College leadership and fellow students to support academic initiatives and elevate student engagement across campus.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-cyber-accent mt-1 mr-3"></i>
+                            <span>Participate directly in campus event planning, student outreach, and leadership development activities for the KSU Honors community.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-cyber-base border-t border-cyber-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <div class="flex items-center gap-4 mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Selected Research &amp; Publications</h2>
+                    <div class="h-px bg-cyber-border flex-grow"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1: Fruit EOAT -->
+                    <div class="group bg-cyber-surface border border-cyber-border rounded-lg overflow-hidden hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)] flex flex-col h-full">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-center mb-4">
+                                <i class="fas fa-robot text-3xl text-cyber-accent"></i>
+                                <span class="font-mono text-xs text-cyber-accent px-2.5 py-1 bg-cyber-base rounded border border-cyber-border">06/2026 - Present</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyber-accent transition-colors">Fruit End-of-Arm Tool (EOAT) for Robotic Harvesting</h3>
+                            <p class="text-gray-400 text-sm mb-6 flex-grow">
+                                Developing a cost-effective, energy-efficient robotic EOAT for multi-fruit harvesting. Integrates YOLO-based computer vision, ROS 2 motion planning, and finger-mounted force sensors to prevent fruit damage.
+                            </p>
+                            <ul class="flex flex-wrap gap-2 font-mono text-xs text-gray-400 mt-auto">
+                                <li class="px-2 py-1 bg-cyber-base rounded">YOLO</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">ROS 2</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">Force Control</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Domain-Adaptive Face Recognition -->
+                    <div class="group bg-cyber-surface border border-cyber-border rounded-lg overflow-hidden hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)] flex flex-col h-full">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-center mb-4">
+                                <i class="fas fa-brain text-3xl text-cyber-accent"></i>
+                                <a href="https://doi.org/10.1109/ICoMMS66553.2025.11200320" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyber-accent transition-colors" aria-label="View Paper">
+                                    <i class="fas fa-external-link-alt text-lg"></i>
+                                </a>
+                            </div>
+                            <div class="font-mono text-xs text-gray-500 mb-1 uppercase">2025 &middot; IEEE ICOMMS</div>
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyber-accent transition-colors">Cross-Domain Face Classification (DANN)</h3>
+                            <p class="text-gray-400 text-sm mb-6 flex-grow">
+                                Contributed to a deep learning face-recognition system using Python, PyTorch, and a pretrained ResNet-18 backbone. Achieved 98.92% accuracy across sketch and real face images and tested on a robotic dog platform.
+                            </p>
+                            <ul class="flex flex-wrap gap-2 font-mono text-xs text-gray-400 mt-auto">
+                                <li class="px-2 py-1 bg-cyber-base rounded">PyTorch</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">ResNet-18</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">Computer Vision</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: CanSat Impactor -->
+                    <div class="group bg-cyber-surface border border-cyber-border rounded-lg overflow-hidden hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)] flex flex-col h-full">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-center mb-4">
+                                <i class="fas fa-satellite text-3xl text-cyber-accent"></i>
+                                <a href="https://doi.org/10.1109/HONET67928.2025.11318440" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyber-accent transition-colors" aria-label="View Paper">
+                                    <i class="fas fa-external-link-alt text-lg"></i>
+                                </a>
+                            </div>
+                            <div class="font-mono text-xs text-gray-500 mb-1 uppercase">2025 &middot; IEEE HONET</div>
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyber-accent transition-colors">CanSat Impactor for Remote Soil Logging</h3>
+                            <p class="text-gray-400 text-sm mb-6 flex-grow">
+                                Designed a 3D-printed, UAV-deployable soil-monitoring device using ESP32 hardware and environmental sensors, demonstrating ~18 hours of autonomous operation and presented at the KSU Symposium of Student Scholars.
+                            </p>
+                            <ul class="flex flex-wrap gap-2 font-mono text-xs text-gray-400 mt-auto">
+                                <li class="px-2 py-1 bg-cyber-base rounded">ESP32</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">IoT</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">3D Printing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: TRITON -->
+                    <div class="group bg-cyber-surface border border-cyber-border rounded-lg overflow-hidden hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)] flex flex-col h-full">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-center mb-4">
+                                <i class="fas fa-seedling text-3xl text-cyber-accent"></i>
+                                <a href="https://doi.org/10.1109/EECR64516.2025.11077329" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyber-accent transition-colors" aria-label="View Paper">
+                                    <i class="fas fa-external-link-alt text-lg"></i>
+                                </a>
+                            </div>
+                            <div class="font-mono text-xs text-gray-500 mb-1 uppercase">2025 &middot; IEEE EECR</div>
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyber-accent transition-colors">TRITON: Non-Contact Plant Sensing</h3>
+                            <p class="text-gray-400 text-sm mb-6 flex-grow">
+                                Investigated non-contact plant moisture and ripeness monitoring using Raspberry Pi wireless Channel State Information (CSI) with Nexmon firmware, MATLAB signal analysis, and Husky UGV integration.
+                            </p>
+                            <ul class="flex flex-wrap gap-2 font-mono text-xs text-gray-400 mt-auto">
+                                <li class="px-2 py-1 bg-cyber-base rounded">Raspberry Pi</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">MATLAB</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">RF CSI Sensing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: AR in Robotic Surgery -->
+                    <div class="group bg-cyber-surface border border-cyber-border rounded-lg overflow-hidden hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)] flex flex-col h-full">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-center mb-4">
+                                <i class="fas fa-vr-cardboard text-3xl text-cyber-accent"></i>
+                                <a href="https://doi.org/10.18196/jrc.v6i3.26349" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyber-accent transition-colors" aria-label="View Paper">
+                                    <i class="fas fa-external-link-alt text-lg"></i>
+                                </a>
+                            </div>
+                            <div class="font-mono text-xs text-gray-500 mb-1 uppercase">2025 &middot; Journal of Robotics &amp; Control</div>
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyber-accent transition-colors">Augmented Reality in Robotic Surgery</h3>
+                            <p class="text-gray-400 text-sm mb-6 flex-grow">
+                                Co-authored a case study on precision and workflow integration from real to virtual surgical environments, evaluating AR and AI-driven haptic feedback in robotic interventions.
+                            </p>
+                            <ul class="flex flex-wrap gap-2 font-mono text-xs text-gray-400 mt-auto">
+                                <li class="px-2 py-1 bg-cyber-base rounded">Augmented Reality</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">Surgical Robotics</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">Sensor Fusion</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: Automated Robotic Manufacturing -->
+                    <div class="group bg-cyber-surface border border-cyber-border rounded-lg overflow-hidden hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)] flex flex-col h-full">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-center mb-4">
+                                <i class="fas fa-industry text-3xl text-cyber-accent"></i>
+                                <a href="https://doi.org/10.1109/ICoMMS66553.2025.11200243" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyber-accent transition-colors" aria-label="View Paper">
+                                    <i class="fas fa-external-link-alt text-lg"></i>
+                                </a>
+                            </div>
+                            <div class="font-mono text-xs text-gray-500 mb-1 uppercase">2025 &middot; IEEE ICOMMS</div>
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyber-accent transition-colors">Automated Robotic Manufacturing System</h3>
+                            <p class="text-gray-400 text-sm mb-6 flex-grow">
+                                Developed a rapidly prototyped manufacturing system integrating a 3D-printed six-axis robotic arm with an automated conveyor workflow, achieving a cycle time of 60–65 seconds per pallet.
+                            </p>
+                            <ul class="flex flex-wrap gap-2 font-mono text-xs text-gray-400 mt-auto">
+                                <li class="px-2 py-1 bg-cyber-base rounded">Robotics</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">Rapid Prototyping</li>
+                                <li class="px-2 py-1 bg-cyber-base rounded">Automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hobbies" class="py-24 bg-cyber-surface/50 border-t border-cyber-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <div class="flex items-center gap-4 mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Cybersecurity Labs &amp; Personal Interests</h2>
+                    <div class="h-px bg-cyber-border flex-grow"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- KSU Cybersecurity Labs & Coursework (7 cols) -->
+                    <div class="lg:col-span-7 bg-cyber-base border border-cyber-border rounded-xl p-8 flex flex-col justify-between group hover:border-cyber-accent transition-all duration-300">
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 bg-cyber-surface rounded-lg flex items-center justify-center text-cyber-accent text-2xl border border-cyber-border group-hover:bg-cyber-accent group-hover:text-cyber-base transition-all">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">Hands-On Cybersecurity &amp; KSU Labs</h3>
+                                    <p class="font-mono text-xs text-cyber-accent">Packet Inspection, Network Reconnaissance &amp; Defense</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-base leading-relaxed mb-6">
+                                Cybersecurity is more than my academic focus—it is a hands-on passion. Through intensive labs at Kennesaw State University, I enjoy dissecting live network traffic, mapping networks, and defending enterprise systems throughout my course work:
+                            </p>
+
+                            <div class="space-y-4 mb-6">
+                                <div class="p-4 bg-cyber-surface/80 border border-cyber-border rounded-lg">
+                                    <div class="font-mono text-sm text-cyber-accent font-bold mb-1">
+                                        IT 4323 &middot; Data Communications &amp; Networking
+                                    </div>
+                                    <p class="text-gray-400 text-sm">
+                                        Mastered deep packet inspection and understanding protocol analysis using <span class="text-white font-medium">Wireshark</span>—capturing live traffic, analyzing TCP/IP three-way handshakes, inspecting DNS/HTTP/TLS streams, and diagnosing network latency and packet loss across OSI layers.
+                                    </p>
+                                </div>
+
+                                <div class="p-4 bg-cyber-surface/80 border border-cyber-border rounded-lg">
+                                    <div class="font-mono text-sm text-cyber-accent font-bold mb-1">
+                                        IT 4883 &middot; Infrastructure Defense
+                                    </div>
+                                    <p class="text-gray-400 text-sm">
+                                        Focused on defending critical network infrastructure through firewall rule configuration, understanding phishing through email attachments, intrusion detection and prevention systems (IDS/IPS), and network segmentation against unauthorized access.
+                                    </p>
+                                </div>
+
+                                <div class="p-4 bg-cyber-surface/80 border border-cyber-border rounded-lg">
+                                    <div class="font-mono text-sm text-cyber-accent font-bold mb-1">
+                                        IT 4843 &middot; Ethical Hacking for Effective Defense
+                                    </div>
+                                    <p class="text-gray-400 text-sm">
+                                        Performed active network reconnaissance, host discovery, port scanning via using <span class="text-white font-medium">Wireshark</span>—identifying exposed attack surfaces and applying offensive insights and a comprehensive report to strengthen my understanding of defensive security postures.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 font-mono text-xs">
+                            <span class="px-3 py-1 bg-cyber-surface rounded border border-cyber-border text-cyber-accent">Wireshark</span>
+                            <span class="px-3 py-1 bg-cyber-surface rounded border border-cyber-border text-cyber-accent">Nmap</span>
+                            <span class="px-3 py-1 bg-cyber-surface rounded border border-cyber-border text-cyber-accent">IT 4323</span>
+                            <span class="px-3 py-1 bg-cyber-surface rounded border border-cyber-border text-cyber-accent">IT 4883</span>
+                            <span class="px-3 py-1 bg-cyber-surface rounded border border-cyber-border text-cyber-accent">IT 4843</span>
+                        </div>
+                    </div>
+
+                    <!-- Love for Cars (5 cols) -->
+                    <div class="lg:col-span-5 bg-cyber-base border border-cyber-border rounded-xl p-8 flex flex-col justify-between group hover:border-cyber-accent transition-all duration-300">
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 bg-cyber-surface rounded-lg flex items-center justify-center text-cyber-accent text-2xl border border-cyber-border group-hover:bg-cyber-accent group-hover:text-cyber-base transition-all">
+                                    <i class="fas fa-car-side"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">Automotive Enthusiast</h3>
+                                    <p class="font-mono text-xs text-cyber-accent">Cars, Performance &amp; Engineering</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-base leading-relaxed mb-6">
+                                Outside of cybersecurity labs, research, leadership and personal commitments I have a huge passion for cars and automotive engineering. I enjoy diving into powertrain mechanics, understanding the engine and car bodies aerodynamics and performance tuning, or even just keeping up with automotive culture. I truly love seeing how precision hardware and modern onboard electronics come together on the road.
+                            </p>
+                            <p class="text-gray-400 text-base leading-relaxed mb-6">
+                                That curiosity for how complex machines operate under the hood naturally complements my hands-on approach to troubleshooting IT systems, my ability to problem solve and troubleshoot, and my curiosity in the field of research in robotics.
+                            </p>
+                        </div>
+
+                        <div class="p-4 bg-cyber-surface/60 border border-cyber-border rounded-lg font-mono text-xs text-gray-300 space-y-2">
+                            <div class="text-cyber-accent font-bold">// Automotive_Interests.cfg</div>
+                            <div><span class="text-green-400">➜</span> Performance Engineering &amp; Tuning</div>
+                            <div><span class="text-green-400">➜</span> Mechanical Diagnostics &amp; Design</div>
+                            <div><span class="text-green-400">➜</span> Modern Automotive Electronics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-cyber-base text-center">
+        <div class="max-w-2xl mx-auto px-4 reveal">
+            <h2 class="text-4xl font-bold text-white mb-6">Get In Touch</h2>
+            <p class="text-gray-400 mb-10">
+                Whether you have a question, or would like to collaborate on research, or are looking to connect with an motivated IT and Cybersecurity student at KSU, my inbox is always open.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="mailto:ssaudaga@students.kennesaw.edu" class="px-8 py-4 border-2 border-cyber-accent text-cyber-accent font-mono font-bold rounded hover:bg-cyber-accent hover:text-cyber-base transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                    ssaudaga@students.kennesaw.edu
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-cyber-surface py-8 border-t border-cyber-border text-center">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+            <div class="flex space-x-6 mb-4">
+                <a href="https://scholar.google.com/citations?user=AepThOgAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyber-accent transition-colors text-xl" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+                <a href="https://www.linkedin.com/in/sheraz-saudagar-308a7338b" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyber-accent transition-colors text-xl" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:ssaudaga@students.kennesaw.edu" class="text-gray-400 hover:text-cyber-accent transition-colors text-xl" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="text-gray-500 text-sm font-mono">
+                Designed &amp; Built by Sheraz Saudagar <br>
+                <span class="text-xs opacity-75 mt-2 block">&copy; 2026 All Rights Reserved.</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                });
+            });
+
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('shadow-lg');
+                } else {
+                    navbar.classList.remove('shadow-lg');
+                }
+            });
+
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
